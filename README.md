@@ -3,6 +3,7 @@
 Block coding for the LEGO® Education SPIKE™ Prime hub (SPIKE App 3 firmware), made for Lalynn.
 
 - Drag blocks, test them in the on-screen sea simulator with Captain Lily.
+- Play **Missions**: 12 build-and-code challenges with stars for building, coding and a maths or science question.
 - Press **Run** with **Hub** selected to send the program to the real hub over Bluetooth.
 
 Bluetooth works in Chrome on Android, Windows and Mac. It does not work on iPhone or iPad.

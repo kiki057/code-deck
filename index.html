@@ -147,6 +147,41 @@ pre.py { margin: 0; font-family: var(--mono); font-size: .8rem; line-height: 1.5
 .pix-tools { display: flex; gap: 6px; padding: 0 10px 10px; background: #20262a; }
 .pix-tools button { flex: 1; border: 0; border-radius: 8px; padding: 6px; font-family: var(--display); font-weight: 700; background: #4a555a; color: #fff; }
 
+
+/* missions */
+.mmap { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+.mbadge { border: 2px solid var(--line); background: var(--foam); border-radius: 14px; padding: 6px 2px 4px; display: flex; flex-direction: column; align-items: center; gap: 1px; font-family: var(--display); font-weight: 800; font-size: 1.05rem; color: var(--ink); min-height: 52px; }
+.mbadge small { font-size: .62rem; letter-spacing: .5px; color: #c48a00; font-weight: 700; }
+.mbadge[aria-current="true"] { border-color: var(--deck); background: var(--deck); color: #fff; }
+.mbadge[aria-current="true"] small { color: var(--gold); }
+.mbadge.locked { color: #9bb3bb; background: #eef4f6; }
+.mbadge.full { border-color: var(--gold); }
+.mhead { display: flex; gap: 10px; align-items: center; }
+.mnum { flex: none; width: 40px; height: 40px; border-radius: 12px; background: var(--gold); color: var(--gold-ink); font-family: var(--display); font-weight: 800; font-size: 1.3rem; display: grid; place-items: center; }
+.mhead h2 { font-size: 1.25rem; }
+.mhead .tag { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.story { font-size: .95rem; line-height: 1.5; margin: 0; }
+.steps { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 6px; font-size: .92rem; line-height: 1.45; }
+.parts { display: flex; flex-wrap: wrap; gap: 6px; }
+.parts span { background: #eef5f7; border-radius: 999px; padding: 4px 10px; font-size: .82rem; font-weight: 700; }
+.goal { background: #fff7dc; border: 1px solid #f1d27a; border-radius: 12px; padding: 10px 12px; font-size: .95rem; line-height: 1.45; font-weight: 700; }
+.starrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.starbox { border: 1px solid var(--line); border-radius: 12px; padding: 8px; display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center; font-size: .78rem; color: var(--ink-soft); }
+.starbox b { font-family: var(--display); font-size: .9rem; color: var(--ink); }
+.star { width: 28px; height: 28px; }
+.star path { fill: #dfe8eb; }
+.star.on path { fill: var(--gold); stroke: #c98f00; stroke-width: 1; }
+.think-opts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.think-opts button { border: 2px solid var(--line); background: #fff; border-radius: 12px; padding: 10px; font-family: var(--display); font-weight: 800; font-size: 1.05rem; min-height: 48px; color: var(--ink); }
+.think-opts button.right { border-color: var(--kelp); background: #e3f7ec; }
+.think-opts button.wrong { border-color: var(--coral); background: #ffeceb; }
+.feedback { border-radius: 12px; padding: 10px 12px; font-size: .92rem; line-height: 1.45; }
+.feedback.ok { background: #e3f7ec; border: 1px solid #9fdcb9; }
+.feedback.no { background: #ffeceb; border: 1px solid #f3b4ae; }
+.mcheer { display: flex; align-items: center; gap: 10px; background: var(--deck); color: #fff; border-radius: 14px; padding: 8px 12px; font-family: var(--display); font-weight: 800; font-size: 1.05rem; }
+.mcheer canvas { width: 56px; height: 56px; image-rendering: pixelated; }
+.hint { font-size: .9rem; line-height: 1.45; background: #eef5f7; border-radius: 10px; padding: 8px 10px; }
+
 /* narrow (Fold cover screen): one view at a time + bottom nav */
 @media (max-width: 759px) {
   .brand h1, .hide-sm { display: none; }
@@ -155,7 +190,7 @@ pre.py { margin: 0; font-family: var(--mono); font-size: .8rem; line-height: 1.5
   #app[data-view="blocks"] aside { display: none; }
   #app:not([data-view="blocks"]) #blocks { display: none; }
   .mnav { display: flex; flex: none; background: var(--deck); padding-block: 6px max(6px, env(safe-area-inset-bottom, 0px)); padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); gap: 4px; }
-  .mnav button { flex: 1; border: 0; background: transparent; color: #a9cad5; font-family: var(--display); font-weight: 700; font-size: .8rem; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px; border-radius: 12px; min-height: 48px; }
+  .mnav button { flex: 1; min-width: 0; border: 0; background: transparent; color: #a9cad5; font-family: var(--display); font-weight: 700; font-size: .8rem; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px; border-radius: 12px; min-height: 48px; }
   .mnav button svg { width: 22px; height: 22px; }
   .mnav button[aria-selected="true"] { background: var(--deck-2); color: #fff; }
   .btn { padding: 8px 12px; }
@@ -183,10 +218,13 @@ pre.py { margin: 0; font-family: var(--mono); font-size: .8rem; line-height: 1.5
     <section id="blocks" aria-label="Block workspace"><div id="blk"></div><div class="zoomer"><button id="zIn" aria-label="Zoom in">+</button><button id="zOut" aria-label="Zoom out">−</button><button id="zFit" aria-label="Show all blocks">⤢</button></div></section>
     <aside>
       <div class="tabs" role="tablist">
+        <button role="tab" data-p="missions" aria-selected="false">Missions</button>
         <button role="tab" data-p="ship" aria-selected="true">Ship sim</button>
         <button role="tab" data-p="hub" aria-selected="false">Hub</button>
         <button role="tab" data-p="py" aria-selected="false">Python</button>
       </div>
+
+      <div class="panel" id="p-missions" hidden></div>
 
       <div class="panel" id="p-ship">
         <div class="sea-wrap"><canvas id="sea" width="720" height="480" aria-label="Sea map simulator"></canvas>
@@ -248,6 +286,7 @@ pre.py { margin: 0; font-family: var(--mono); font-size: .8rem; line-height: 1.5
 
   <nav class="mnav" role="tablist">
     <button data-v="blocks" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="11" height="6" rx="2"/><rect x="7" y="12" width="14" height="7" rx="2"/></svg>Blocks</button>
+    <button data-v="missions" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.8z"/></svg>Missions</button>
     <button data-v="ship" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3v11M12 4l6 8h-6M3 16h18l-3 4H6z"/></svg>Ship</button>
     <button data-v="hub" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="3"/><circle cx="12" cy="15" r="2"/><path d="M9 8h6"/></svg>Hub</button>
     <button data-v="py" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>Python</button>
@@ -575,6 +614,8 @@ const PYG = {
   out_print: (b) => `print(${pv(b, 'TEXT', "''")})\n`,
 };
 Object.assign(PY.forBlock, PYG);
+// hub-safe variable change (Blockly's default imports 'numbers', which MicroPython lacks)
+PY.forBlock.math_change = (b) => { const v = PY.getVariableName(b.getFieldValue('VAR')); return `${v} = (${v} or 0) + ${PY.valueToCode(b, 'DELTA', PO.ADDITIVE) || '0'}\n`; };
 
 const PY_HEAD = `# Made with Code Deck (Lily's SPIKE Prime blocks)
 from hub import light_matrix, light, sound, button, motion_sensor, port
@@ -818,9 +859,10 @@ const Sim = (() => {
   const X = { x: 140, y: 135, r: 7 };
   const cv = $('#sea'), ctx = cv.getContext('2d');
   let r, m, pair, mvSpeed, rot, trail, simT = 0, frame = 0, pend = [], stopped = true, crashed = false, yaw0 = 0, matrix = new Array(25).fill(0), btn = 'WHITE', forceDown = false, keys = { LEFT: false, RIGHT: false };
-  let audio;
+  let audio, stats;
+  const freshStats = () => ({ fwd: 0, back: 0, fFwd: 0, fBack: 0, minDist: 999, pics: new Set() });
   function reset() {
-    r = { ...START }; trail = []; crashed = false; yaw0 = r.th;
+    r = { ...START }; trail = []; crashed = false; yaw0 = r.th; stats = freshStats();
     m = {}; PORTS.forEach((p) => (m[p] = { pos: 0, vel: 0, mode: 'free', target: 0, until: 0, speed: 75 }));
     pair = ['A', 'B']; mvSpeed = 50; rot = 17.5; matrix.fill(0); btn = 'WHITE';
     paintHub(matrix, btn);
@@ -861,15 +903,17 @@ const Sim = (() => {
       else M.pos += M.vel * dt;
       d[p] = M.pos - before;
     }
+    if (d.F > 0) stats.fFwd += d.F; else stats.fBack -= d.F;
     const dl = (d[pair[0]] / 360) * rot, dr = (d[pair[1]] / 360) * rot;
     const ds = (dl + dr) / 2, dth = (dl - dr) / TRACK;
     if (ds || dth) {
       const nx = r.x + Math.cos(r.th + dth / 2) * ds, ny = r.y + Math.sin(r.th + dth / 2) * ds;
       r.th += dth;
-      if (blocked(nx, ny)) { if (!crashed) { crashed = true; onEvent('crash'); } } else { r.x = nx; r.y = ny; }
+      if (blocked(nx, ny)) { if (!crashed) { crashed = true; onEvent('crash'); } } else { r.x = nx; r.y = ny; if (ds > 0) stats.fwd += ds; else stats.back -= ds; }
       if (!trail.length || Math.hypot(trail[trail.length - 1].x - r.x, trail[trail.length - 1].y - r.y) > 3) trail.push({ x: r.x, y: r.y });
       if (trail.length > 400) trail.shift();
     }
+    if (!stopped && frame % 3 === 0) stats.minDist = Math.min(stats.minDist, distance());
     for (let i = pend.length - 1; i >= 0; i--) if (pend[i].check()) { pend[i].res(); pend.splice(i, 1); }
     onEvent('step');
   }
@@ -904,7 +948,7 @@ const Sim = (() => {
     startMoving(dir) { pair.forEach((p) => { m[p].mode = 'free'; m[p].vel = v10(mvSpeed) * dir; }); },
     stopMoving() { pair.forEach((p) => { m[p].mode = 'free'; m[p].vel = 0; }); },
     moveSpeed(s) { mvSpeed = +s; }, rotCm(c) { rot = +c || 17.5; },
-    showPx(s) { for (let i = 0; i < 25; i++) matrix[i] = s[i] === '9' ? 100 : 0; paintHub(matrix, btn); },
+    showPx(s) { stats.pics.add(s); for (let i = 0; i < 25; i++) matrix[i] = s[i] === '9' ? 100 : 0; paintHub(matrix, btn); },
     setPixel(x, y, b) { x = Math.round(x) - 1; y = Math.round(y) - 1; if (x >= 0 && x < 5 && y >= 0 && y < 5) { matrix[y * 5 + x] = Math.max(0, Math.min(100, +b)); paintHub(matrix, btn); } },
     clear() { matrix.fill(0); paintHub(matrix, btn); },
     async write(t) { const cols = textColumns(t); for (let o = 0; o + 5 <= cols.length; o++) { for (let x = 0; x < 5; x++) for (let y = 0; y < 5; y++) matrix[y * 5 + x] = cols[o + x][y]; paintHub(matrix, btn); await R.wait(0.11); } },
@@ -965,7 +1009,7 @@ const Sim = (() => {
     get running() { return !stopped; },
     start() { stopped = false; crashed = false; },
     on(f) { onEvent = f; },
-    state: () => ({ x: r.x, y: r.y, crashed, color: colorHere(), dist: distance(), matrix, btn, m }),
+    state: () => ({ x: r.x, y: r.y, crashed, color: colorHere(), dist: distance(), matrix, btn, m, stats, turn: ((r.th - START.th) * 180) / Math.PI, home: Math.hypot(r.x - START.x, r.y - START.y) }),
     chime: beep, setForce(v) { forceDown = v; }, setKey(k, v) { keys[k] = v; },
     near: (p, d) => Math.hypot(r.x - p.x, r.y - p.y) < d, X,
   };
@@ -1074,7 +1118,9 @@ const Hub = {
 const KIND = { motor: 'Motor', color: 'Colour sensor', distance: 'Distance sensor', force: 'Force sensor', lightmatrix: 'Light matrix' };
 const CNAME = { '-1': '—', 0: 'black', 1: 'magenta', 2: 'purple', 3: 'blue', 4: 'azure', 5: 'turquoise', 6: 'green', 7: 'yellow', 8: 'orange', 9: 'red', 10: 'white' };
 $('#hubPorts').innerHTML = PORTS.map((p) => `<div class="port"><b>${p}</b><div id="hp${p}">empty</div></div>`).join('');
+let lastDevices = null;
 function showDevices(d) {
+  lastDevices = d; if (window.onHubDevices) window.onHubDevices(d);
   if (d.battery != null) $('#hBat').textContent = d.battery + '%';
   if (d.yaw != null) $('#hYaw').textContent = Math.round(d.yaw / 10) + '°';
   if (d.matrix) paintMatrix(hubCells, d.matrix);
@@ -1148,6 +1194,7 @@ async function run() {
     clearInterval(watch);
     if (!celebrated && checkChallenge()) { celebrated = true; done(true); }
     Sim.kill(); setRunning(null);
+    if (window.missionAfterRun && window.missionAfterRun('sim')) return;
     if (!celebrated && challenge !== 'free') toast(Sim.state().crashed ? 'Ouch, a rock! Try a different route.' : 'Not quite yet. Change a number and try again!');
     return;
   }
@@ -1159,6 +1206,7 @@ async function run() {
     await Hub.upload(buildPython(), slot, (p) => toast(`Sending program… ${Math.round(p * 100)}%`, '', 0));
     await Hub.start(slot);
     toast('Running on the hub!', 'ok'); logLine(`Program started in slot ${slot}`, 'sys');
+    if (window.missionAfterRun) window.missionAfterRun('hub');
   } catch (e) { setRunning(null); toast(e.message || 'Upload failed.', 'err', 5000); logLine(e.message || String(e), 'err'); }
 }
 async function stopAll() {
@@ -1176,7 +1224,8 @@ function setView(v) {
   if (v !== 'blocks') sidePanel = v;
   $$('.mnav button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.v === v)));
   $$('.tabs button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.p === sidePanel)));
-  ['ship', 'hub', 'py'].forEach((p) => ($('#p-' + p).hidden = p !== sidePanel));
+  ['missions', 'ship', 'hub', 'py'].forEach((p) => ($('#p-' + p).hidden = p !== sidePanel));
+  if (sidePanel === 'missions' && window.renderMissions) window.renderMissions();
   if (sidePanel === 'py') $('#pyOut').innerHTML = hl(buildPython());
   requestAnimationFrame(() => { Blockly.svgResize(ws); Sim.draw(); });
 }
@@ -1232,6 +1281,309 @@ const saved = store.get('deck.ws', null);
 loadState(saved && saved.blocks ? saved : EXAMPLES[1].state);
 setChallenge('free'); hubUi(); setView('blocks');
 window.__deck = { ws, Sim, buildPython, buildJS, loadState, EXAMPLES, Hub, run, setView, setChallenge };
+</script>
+<script>
+'use strict';
+/* ---------- Missions: build it, code it, think about it ---------- */
+(() => {
+  const DRIVE = ['A', 'B'];
+  const base = {
+    parts: ['Hub', '2 medium motors', '2 wheels', '1 caster ball or skid'],
+    steps: [
+      'Build LEGO’s free "Driving Base" from the SPIKE App, or invent your own robot car.',
+      'Plug the LEFT wheel motor into port A and the RIGHT wheel motor into port B.',
+      'Check that the hub sits flat and the wheels spin freely when you lift the robot.',
+    ],
+  };
+  const types = () => {
+    const all = ws.getAllBlocks(false).filter((b) => b.isEnabled());
+    return { all, has: (...t) => t.some((x) => all.some((b) => b.type === x)), find: (t) => all.filter((b) => b.type === t) };
+  };
+  const numIn = (b, name) => { const t = b.getInputTargetBlock(name); return t && t.type === 'math_number' ? +t.getFieldValue('NUM') : null; };
+  const cm = (v) => Math.round(v) + ' cm';
+  const deg = (v) => Math.round(v) + '°';
+
+  const MISSIONS = [
+    {
+      id: 'signal', title: 'Captain’s Signal', tag: 'Lights + sound', world: 'free', ports: {},
+      story: 'Every pirate ship flies its own flag. Design Captain Lily’s flag on the hub lights, then sound the ship’s horn so the crew knows you are coming.',
+      parts: ['Hub only'], steps: ['No building today. Just switch on the hub.'],
+      goal: 'Use "show picture" with a flag you drew yourself, then a "beep" block.',
+      hints: ['Find "show picture" in Lights. Tap the little grid on the block to draw.', 'Your flag must be different from the heart that the block starts with.', 'Add "beep note" from Sound underneath.'],
+      think: { q: 'The light grid has 5 rows with 5 lights in each row. How many lights is that?', opts: ['10', '20', '25', '55'], a: '25', why: '5 rows × 5 lights = 25 lights.' },
+      check(c) {
+        const pics = c.t.find('light_draw').map((b) => b.getFieldValue('PIX')).filter((v) => v !== '0909099999999990999000900' && /9/.test(v));
+        if (!pics.length) return [false, 'Draw your own flag in a "show picture" block (not the heart).'];
+        if (!c.t.has('sound_beep')) return [false, 'Nice flag! Now add a "beep" so the crew hears you.'];
+        return [true, 'Flag raised and horn blown!'];
+      },
+    },
+    {
+      id: 'flag', title: 'Spinning Flag', tag: 'Motors · degrees', world: 'free', ports: { F: 'motor' },
+      story: 'The lookout waves the flag from the crow’s nest. Make the flag spin exactly 3 full times, no more and no less.',
+      parts: ['Hub', 'Large motor', 'A beam or flag shape'],
+      steps: ['Plug the large motor into port F.', 'Push a beam or axle into the round hole on the motor and fix a paper or LEGO flag to it.', 'Hold the hub so the flag can spin without hitting anything.'],
+      goal: 'Make motor F turn exactly 3 rotations.',
+      hints: ['Use "motor F run clockwise for 1 rotations" from Motors.', 'Change the number 1 to 3, or use degrees instead.', 'If you use degrees, 1 rotation is 360 degrees.'],
+      think: { q: '1 rotation is 360°. How many degrees is 3 rotations?', opts: ['363°', '720°', '1080°', '900°'], a: '1080°', why: '360 + 360 + 360 = 1080, or 3 × 360 = 1080.' },
+      check(c) { const p = Math.abs(c.s.m.F.pos); return Math.abs(p - 1080) <= 15 ? [true, 'Exactly 3 spins. The crew cheers!'] : [false, `Motor F turned ${deg(p)}. 3 rotations is 1080°.`]; },
+    },
+    {
+      id: 'gym', title: 'Gymnast Routine', tag: 'Repeat · motors', world: 'free', ports: { F: 'motor' },
+      story: 'The ship has a gymnastics bar! Program a routine: two flips forward, one flip back, then land with a star jump and show the judges’ score.',
+      parts: ['Hub', 'Large motor', 'Beams', 'A minifigure or a LEGO gymnast you build'],
+      steps: ['Keep the large motor on port F.', 'Build a bar on the motor’s hole and fix your gymnast to it so she spins around.', 'Stand the motor on its side so the gymnast can swing all the way round.'],
+      goal: 'Use a "repeat" block for the forward flips, add a backward flip, and finish by showing a picture.',
+      hints: ['Put "motor F run clockwise for 1 rotations" inside "repeat 2 times".', 'For the back flip, choose counterclockwise.', 'End with "show star jump" or draw your own landing pose.'],
+      think: { q: 'The judges score 9, 10 and 8. What is the total?', opts: ['17', '27', '28', '18'], a: '27', why: '9 + 10 = 19, then 19 + 8 = 27.' },
+      check(c) {
+        if (!c.t.has('controls_repeat_ext')) return [false, 'Use a "repeat" block for the forward flips.'];
+        if (c.s.stats.fFwd < 700) return [false, 'Do at least 2 forward flips (2 clockwise rotations).'];
+        if (c.s.stats.fBack < 340) return [false, 'Add 1 backward flip (counterclockwise).'];
+        if (!c.s.stats.pics.size) return [false, 'Land it! Show a picture at the end.'];
+        return [true, 'Perfect 10 from the judges!'];
+      },
+    },
+    {
+      id: 'sail', title: 'Set Sail', tag: 'Moving · measuring', world: 'free', ports: { A: 'motor', B: 'motor' }, ...base,
+      story: 'Time to leave the dock. Sail exactly 50 cm straight ahead. Put a piece of tape on the floor 50 cm away to check your real robot.',
+      goal: 'Move forward 50 cm, in a straight line.',
+      hints: ['Use "move forward 20 cm" from Moving and change the number.', 'Measure with a ruler or tape measure at home.', 'If the real robot goes too far or not far enough, check "1 wheel turn = 17.5 cm" matches your wheels.'],
+      think: { q: 'There are 100 cm in 1 metre. How many 50 cm trips make 1 metre?', opts: ['1', '2', '5', '50'], a: '2', why: '50 cm + 50 cm = 100 cm = 1 metre.' },
+      check(c) {
+        const f = c.s.stats.fwd;
+        if (c.s.crashed) return [false, 'Bump! Sail somewhere without rocks.'];
+        if (Math.abs(c.s.turn) > 5) return [false, 'Go in a straight line, with no turns this time.'];
+        return Math.abs(f - 50) <= 3 ? [true, `Sailed ${cm(f)}. Right on the mark!`] : [false, `The ship sailed ${cm(f)}. The goal is 50 cm.`];
+      },
+    },
+    {
+      id: 'square', title: 'Square Patrol', tag: 'Repeat · shapes', world: 'free', ports: { A: 'motor', B: 'motor' }, ...base,
+      story: 'Patrol the harbour in a perfect square and come back to the dock exactly where you started.',
+      goal: 'Sail a square and finish back at the start. Use "repeat".',
+      hints: ['A square has 4 sides and 4 corners.', 'Inside "repeat 4 times": move forward, then turn right 90 degrees.', 'Keep the sides short (30 to 40 cm) so you do not hit the rocks.'],
+      think: { q: 'A square has 4 turns of 90°. How much does the robot turn in total?', opts: ['90°', '180°', '360°', '400°'], a: '360°', why: '4 × 90 = 360, one full circle.' },
+      check(c) {
+        if (!c.t.has('controls_repeat_ext')) return [false, 'Use a "repeat" block, so you only write one side.'];
+        if (c.s.crashed) return [false, 'Bump! Make the sides a bit shorter.'];
+        if (Math.abs(Math.abs(c.s.turn) - 360) > 15) return [false, `The ship turned ${deg(Math.abs(c.s.turn))} in total. A square needs 360°.`];
+        if (c.s.home > 10) return [false, `You ended ${cm(c.s.home)} away from the dock. Make all 4 sides the same.`];
+        return [true, 'Perfect square patrol!'];
+      },
+    },
+    {
+      id: 'treasure', title: 'Treasure X', tag: 'Turning · planning', world: 'treasure', ports: { A: 'motor', B: 'motor' }, ...base,
+      story: 'The map shows a black X east of the dock. Plan the route: which way to turn, and how far to sail? At home, make an X with tape on the floor.',
+      goal: 'Sail from the dock to the black X without hitting a rock.',
+      hints: ['The ship starts facing up (north). The X is to the right (east).', 'Turn right 90 degrees first.', 'Each grid square on the map is 20 cm. Count the squares to the X.'],
+      think: { q: 'Each map square is 20 cm. The X is about 5 squares away. How far is that?', opts: ['25 cm', '50 cm', '100 cm', '200 cm'], a: '100 cm', why: '5 × 20 = 100 cm.' },
+      check(c) { if (c.s.crashed) return [false, 'A rock! Try a different route.']; return Sim.near(Sim.X, 10) ? [true, 'X marks the spot. Treasure found!'] : [false, 'Not on the X yet. Change your numbers and try again.']; },
+    },
+    {
+      id: 'radar', title: 'Rock Radar', tag: 'Distance sensor', world: 'rock', ports: { A: 'motor', B: 'motor', D: 'distance' }, ...base,
+      parts: [...base.parts, 'Distance sensor'],
+      steps: [...base.steps.slice(0, 2), 'Fix the distance sensor on the FRONT, with its two "eyes" looking forward. Plug it into port D.'],
+      story: 'Fog! The lookout cannot see the rocks. Give the ship a radar so it stops by itself before it crashes.',
+      goal: 'Start sailing, wait until the distance sensor sees something closer than 15 cm, then stop.',
+      hints: ['Use "start moving forward", then "wait until".', 'Put "distance sensor D closer than 15 cm?" inside the wait until.', 'Then "stop moving". At home, use a box as the rock.'],
+      think: { q: 'The distance sensor sends out a sound and listens for the echo. Which animal finds its way like this?', opts: ['Bat', 'Cat', 'Fish', 'Owl'], a: 'Bat', why: 'Bats use echoes to find their way in the dark. It is called echolocation.' },
+      check(c) {
+        if (!c.t.has('sensor_closer', 'sensor_distance')) return [false, 'Use the distance sensor to decide when to stop.'];
+        if (c.s.crashed) return [false, 'Crash! Stop sooner.'];
+        return c.s.dist < 25 && c.s.y < 100 ? [true, `Stopped ${cm(c.s.dist)} from the rock. Safe!`] : [false, 'Sail toward the rock and stop close to it.'];
+      },
+    },
+    {
+      id: 'island', title: 'Island Hopper', tag: 'Colour sensor', world: 'red', ports: { A: 'motor', B: 'motor', C: 'color' }, ...base,
+      parts: [...base.parts, 'Colour sensor', 'Red paper'],
+      steps: [...base.steps.slice(0, 2), 'Fix the colour sensor at the front, pointing DOWN at the floor, about 1 cm above it. Plug it into port C.', 'Put a sheet of red paper on the floor as the island.'],
+      story: 'The red island has the best fruit on the sea. Sail around the rock and stop the moment the colour sensor sees red.',
+      goal: 'Get to the red island and stop on it, using the colour sensor.',
+      hints: ['First sail around the rock: forward, turn, forward, turn.', 'Then "start moving" and "wait until colour sensor C sees red".', 'Then "stop moving" and celebrate with a picture.'],
+      think: { q: 'The colour sensor shines light down and measures what bounces back. Which colour bounces back the MOST light?', opts: ['Black', 'White', 'Red', 'Blue'], a: 'White', why: 'White reflects almost all light. Black soaks most of it up.' },
+      check(c) {
+        if (!c.t.has('sensor_color_is')) return [false, 'Use the colour sensor to find the island.'];
+        if (c.s.crashed) return [false, 'Bump! Go around the rock.'];
+        return c.s.color === 'RED' ? [true, 'Landed on the red island!'] : [false, 'Not on red yet. Keep sailing until the sensor sees red.'];
+      },
+    },
+    {
+      id: 'chest', title: 'Treasure Chest Lock', tag: 'Force sensor', world: 'free', ports: { E: 'force', F: 'motor' },
+      story: 'Build a treasure chest with a secret button. When you press the button, the lid opens.',
+      parts: ['Hub', 'Force sensor', 'Large motor', 'Beams and plates for the chest'],
+      steps: ['Build a small box. Make the lid from a beam fixed to the large motor (port F) so the motor can lift it.', 'Plug the force sensor into port E and put it where a hand can press it.', 'In the simulator, the "Press force E" button is your hand.'],
+      goal: 'Wait until the force sensor is pressed, then turn motor F to open the lid.',
+      hints: ['Use "wait until" with "force sensor E pressed?" from Sensors.', 'Then "motor F run clockwise for 90 degrees" lifts the lid.', 'In the simulator, press Run, then tap "Press force E".'],
+      think: { q: 'A push or a pull is called a…', opts: ['Force', 'Motor', 'Magnet', 'Sensor'], a: 'Force', why: 'Pressing the button is a push, and every push or pull is a force.' },
+      check(c) {
+        if (!c.t.has('sensor_force')) return [false, 'Use the force sensor as the secret button.'];
+        if (!c.t.has('ctl_wait_until', 'controls_if', 'controls_whileUntil')) return [false, 'Use "wait until" so the chest waits for the button.'];
+        return c.s.stats.fFwd + c.s.stats.fBack >= 80 ? [true, 'Click! The chest opens.'] : [false, 'Press the force button while the program runs, so motor F opens the lid.'];
+      },
+    },
+    {
+      id: 'triangle', title: 'Drawing Robot', tag: 'Angles · drawing', world: 'free', ports: { A: 'motor', B: 'motor' }, ...base,
+      parts: [...base.parts, 'A washable marker', 'Big paper'],
+      steps: [...base.steps.slice(0, 2), 'Tape a washable marker to the back of the robot so its tip just touches the paper.', 'Put big paper on the floor (ask a grown-up first!).'],
+      story: 'Captain Lily loves drawing. Turn the ship into an artist and draw a triangle with three equal sides.',
+      goal: 'Draw a triangle: 3 sides, 3 equal turns, back where you started.',
+      hints: ['How many sides does a triangle have? That is your repeat number.', 'Turning all the way round is 360°. Share it between 3 turns.', 'Each turn is 360 ÷ 3.'],
+      think: { q: '3 equal turns make a full circle (360°). How big is each turn?', opts: ['90°', '60°', '120°', '180°'], a: '120°', why: '360 ÷ 3 = 120, so each turn is 120°.' },
+      check(c) {
+        const t120 = c.t.find('move_turn').some((b) => numIn(b, 'DEG') === 120);
+        if (!t120) return [false, 'A triangle needs turns of 120°. Change your turn number.'];
+        if (c.s.crashed) return [false, 'Bump! Draw a smaller triangle.'];
+        if (Math.abs(Math.abs(c.s.turn) - 360) > 15) return [false, `You turned ${deg(Math.abs(c.s.turn))}. A triangle needs 3 turns of 120°.`];
+        if (c.s.home > 10) return [false, 'Make all 3 sides the same length to get back to the start.'];
+        return [true, 'A perfect triangle. Frame it!'];
+      },
+    },
+    {
+      id: 'coins', title: 'Coin Counter', tag: 'Variables', world: 'free', ports: { E: 'force' }, quick: true,
+      story: 'Count the gold coins as the crew brings them aboard. Each press of the button adds one coin, and the hub shows the total.',
+      parts: ['Hub', 'Force sensor'],
+      steps: ['Plug the force sensor into port E.', 'Build a little "coin slot" around it if you like.'],
+      goal: 'Make a variable called coins. Each press adds 1 and the hub writes the number.',
+      hints: ['In Variables, press "Create variable" and call it coins.', 'Use "forever": wait until force E pressed, change coins by 1, write coins.', 'Add "wait 0.5 seconds" so one press counts once.'],
+      think: { q: 'The crew counts 7 coins, then 5 more. How many coins altogether?', opts: ['11', '12', '13', '75'], a: '12', why: '7 + 5 = 12. Count on from 7: 8, 9, 10, 11, 12.' },
+      check(c) {
+        if (!c.t.has('variables_set', 'math_change')) return [false, 'Make a coins variable and change it by 1.'];
+        if (!c.t.has('sensor_force')) return [false, 'Use the force sensor to count each coin.'];
+        if (!c.t.has('light_write')) return [false, 'Use "write" to show the number of coins on the hub.'];
+        return [true, 'Coin counter ready. Count the treasure!'];
+      },
+    },
+    {
+      id: 'boss', title: 'Boss: Sea Monster Guard', tag: 'Put it all together', world: 'rock', ports: { A: 'motor', B: 'motor', D: 'distance' }, ...base,
+      parts: [...base.parts, 'Distance sensor'],
+      steps: [...base.steps.slice(0, 2), 'Distance sensor on the front, in port D.', 'At home, the "sea monster" can be a soft toy.'],
+      story: 'A sea monster guards the rock! Sail up close, warn the crew with a skull on the lights and a low horn, then back away to safety.',
+      goal: 'Stop near the rock using the sensor, show the skull, then move backward at least 15 cm.',
+      hints: ['Start with your Rock Radar program.', 'After stopping: "show skull" and a low "beep note C".', 'Then "move backward 20 cm".'],
+      think: { q: 'The ship starts at the dock. It backs up 20 cm, then sails forward 35 cm. Where is it now?', opts: ['15 cm in front of the dock', '55 cm in front of the dock', '15 cm behind the dock', 'At the dock'], a: '15 cm in front of the dock', why: '35 cm forward take away 20 cm back leaves 15 cm in front of the dock.' },
+      check(c) {
+        const skull = '0999090909999990999009990';
+        if (c.s.stats.minDist > 25) return [false, 'Sail up close to the rock first, using the distance sensor.'];
+        if (!c.s.stats.pics.has(skull)) return [false, 'Show the skull to warn the crew.'];
+        if (c.s.stats.back < 15) return [false, `You backed away ${cm(c.s.stats.back)}. Back away at least 15 cm.`];
+        if (c.s.crashed) return [false, 'The monster got you! Stop sooner.'];
+        return [true, 'You outsmarted the sea monster. Captain of the seas!'];
+      },
+    },
+  ];
+
+  /* progress */
+  let prog = store.get('deck.missions', {});
+  let cur = store.get('deck.mcur', 0);
+  let feedback = null, lastHubRun = false, hintN = 0, thinkPick = null, cheer = false;
+  const P = (id) => (prog[id] = prog[id] || { build: false, code: false, think: false });
+  const save = () => store.set('deck.missions', prog);
+  const stars = (id) => { const p = prog[id] || {}; return (p.build ? 1 : 0) + (p.code ? 1 : 0) + (p.think ? 1 : 0); };
+  const unlocked = (i) => i === 0 || stars(MISSIONS[i - 1].id) >= 1;
+  const STAR = (on) => `<svg class="star${on ? ' on' : ''}" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>`;
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  function buildStatus(m) {
+    const need = Object.entries(m.ports);
+    if (!need.length) return { ok: true, auto: true, text: 'Just the hub. Nothing to plug in.' };
+    if (!Hub.connected || !lastDevices) return { ok: null, text: 'Connect the hub and I’ll check your ports, or tick it yourself.' };
+    const miss = need.filter(([p, k]) => !(lastDevices.ports[p] && lastDevices.ports[p].kind === k));
+    return miss.length ? { ok: false, text: 'Still missing: ' + miss.map(([p, k]) => `${({ motor: 'motor', distance: 'distance sensor', color: 'colour sensor', force: 'force sensor' })[k]} on ${p}`).join(', ') } : { ok: true, auto: true, text: 'All parts are plugged into the right ports!' };
+  }
+
+  function render() {
+    const el = $('#p-missions'); if (!el) return;
+    const m = MISSIONS[cur], p = P(m.id), bs = buildStatus(m);
+    if (bs.ok && bs.auto && !p.build) { p.build = true; save(); }
+    const total = MISSIONS.reduce((a, x) => a + stars(x.id), 0);
+    el.innerHTML = `
+      <div class="row"><h2>Missions</h2><div class="spacer"></div><span class="label">${total} / ${MISSIONS.length * 3} stars</span></div>
+      <div class="mmap" role="list">${MISSIONS.map((x, i) => `<button class="mbadge${unlocked(i) ? '' : ' locked'}${stars(x.id) === 3 ? ' full' : ''}" data-mi="${i}" ${i === cur ? 'aria-current="true"' : ''} aria-label="Mission ${i + 1}: ${esc(x.title)}${unlocked(i) ? '' : ' (locked)'}">${unlocked(i) ? i + 1 : '\u{1F512}'}<small>${'★'.repeat(stars(x.id))}${'·'.repeat(3 - stars(x.id))}</small></button>`).join('')}</div>
+      <div class="card">
+        <div class="mhead"><div class="mnum">${cur + 1}</div><div><div class="tag">${esc(m.tag)}</div><h2>${esc(m.title)}</h2></div></div>
+        <p class="story">${esc(m.story)}</p>
+        ${cheer ? `<div class="mcheer"><canvas id="mCheer" width="64" height="64"></canvas><span>Mission complete! 3 stars!</span></div>` : ''}
+        <div class="starrow">
+          <div class="starbox">${STAR(p.build)}<b>Build</b>${p.build ? 'Done' : 'Build the robot'}</div>
+          <div class="starbox">${STAR(p.code)}<b>Code</b>${p.code ? 'Done' : 'Pass the test'}</div>
+          <div class="starbox">${STAR(p.think)}<b>Think</b>${p.think ? 'Done' : 'Answer the question'}</div>
+        </div>
+      </div>
+      <div class="card">
+        <span class="label">1 · Build</span>
+        <div class="parts">${m.parts.map((x) => `<span>${esc(x)}</span>`).join('')}</div>
+        <ol class="steps">${m.steps.map((x) => `<li>${esc(x)}</li>`).join('')}</ol>
+        <div class="feedback ${bs.ok ? 'ok' : bs.ok === false ? 'no' : ''}" style="${bs.ok === null ? 'background:#eef5f7' : ''}">${esc(bs.text)}</div>
+        ${!p.build ? `<button class="chip" id="mBuilt" style="align-self:flex-start">I built it!</button>` : ''}
+      </div>
+      <div class="card">
+        <span class="label">2 · Code</span>
+        <div class="goal">${esc(m.goal)}</div>
+        <div class="row"><button class="btn btn-run" id="mTest" style="min-height:40px">Test in simulator</button>${lastHubRun && !p.code ? `<button class="chip" id="mHubOk">It worked on my robot!</button>` : ''}</div>
+        ${feedback ? `<div class="feedback ${feedback[0] ? 'ok' : 'no'}">${esc(feedback[1])}</div>` : ''}
+        ${m.hints.slice(0, hintN).map((h, i) => `<div class="hint"><b>Hint ${i + 1}:</b> ${esc(h)}</div>`).join('')}
+        ${hintN < m.hints.length ? `<button class="chip" id="mHint" style="align-self:flex-start">Show a hint (${hintN + 1} of ${m.hints.length})</button>` : ''}
+      </div>
+      <div class="card">
+        <span class="label">3 · Think</span>
+        <p class="story" style="font-weight:700">${esc(m.think.q)}</p>
+        <div class="think-opts">${m.think.opts.map((o) => `<button data-opt="${esc(o)}" class="${p.think && o === m.think.a ? 'right' : thinkPick === o ? (o === m.think.a ? 'right' : 'wrong') : ''}">${esc(o)}</button>`).join('')}</div>
+        ${p.think ? `<div class="feedback ok">${esc(m.think.why)}</div>` : thinkPick ? `<div class="feedback no">Not quite. Try another answer!</div>` : ''}
+      </div>
+      <div class="row">${cur > 0 ? `<button class="chip" id="mPrev">← Mission ${cur}</button>` : ''}<div class="spacer"></div>${cur < MISSIONS.length - 1 ? `<button class="chip" id="mNext" ${unlocked(cur + 1) ? '' : 'disabled'}>Mission ${cur + 2} →</button>` : ''}</div>
+      ${cur < MISSIONS.length - 1 && !unlocked(cur + 1) ? `<p class="muted">Earn 1 star here to unlock the next mission.</p>` : ''}`;
+    el.querySelectorAll('[data-mi]').forEach((b) => b.addEventListener('click', () => { const i = +b.dataset.mi; if (unlocked(i)) go(i); else toast('Earn a star on the mission before to unlock this one.'); }));
+    const on = (id, f) => { const b = el.querySelector(id); if (b) b.addEventListener('click', f); };
+    on('#mBuilt', () => { p.build = true; save(); celebrateIfDone(); render(); });
+    on('#mHubOk', () => { p.code = true; save(); feedback = [true, 'Great work on the real robot!']; celebrateIfDone(); render(); });
+    on('#mHint', () => { hintN++; render(); });
+    on('#mPrev', () => go(cur - 1));
+    on('#mNext', () => go(cur + 1));
+    on('#mTest', () => { if (m.quick) { evaluate(); return; } setTarget('sim'); if (challenge !== m.world) setChallenge(m.world); run(); });
+    el.querySelectorAll('[data-opt]').forEach((b) => b.addEventListener('click', () => {
+      if (p.think) return; thinkPick = b.dataset.opt;
+      if (thinkPick === m.think.a) { p.think = true; save(); Sim.chime(784, 0.12); setTimeout(() => Sim.chime(1047, 0.18), 130); celebrateIfDone(); }
+      render();
+    }));
+    if (cheer) { const c = el.querySelector('#mCheer').getContext('2d'); c.imageSmoothingEnabled = false; let f = 0; clearInterval(render.t); render.t = setInterval(() => { c.clearRect(0, 0, 64, 64); drawFrame(c, 'attack', f++, 0, 0, 64); if (f > 30) clearInterval(render.t); }, 90); }
+  }
+  function celebrateIfDone() { const m = MISSIONS[cur]; if (stars(m.id) === 3) { cheer = true; [523, 659, 784, 1047].forEach((n, i) => setTimeout(() => Sim.chime(n, 0.14), i * 150)); } }
+  function go(i) {
+    cur = i; store.set('deck.mcur', i); feedback = null; hintN = 0; thinkPick = null; cheer = false; lastHubRun = false;
+    const m = MISSIONS[i]; if (challenge !== m.world && !Sim.running) setChallenge(m.world);
+    render(); $('#p-missions').scrollTop = 0;
+  }
+
+  window.renderMissions = () => { const m = MISSIONS[cur]; if (challenge !== m.world && !Sim.running) setChallenge(m.world); render(); };
+  window.onHubDevices = () => { if (!$('#p-missions').hidden) { const m = MISSIONS[cur]; const bs = buildStatus(m); if (bs.ok && !P(m.id).build) render(); } };
+  window.missionAfterRun = (where) => {
+    if (sidePanel !== 'missions' && $('#app').dataset.view !== 'missions') {
+      // still check the mission quietly if this run came from the Missions screen
+      if (!window.__mRun) return false;
+    }
+    window.__mRun = false;
+    const m = MISSIONS[cur], p = P(m.id);
+    if (where === 'hub') { lastHubRun = true; render(); return false; }
+    evaluate(); return true;
+  };
+  function evaluate() {
+    const m = MISSIONS[cur], p = P(m.id);
+    const s = Sim.state();
+    let res;
+    try { res = m.check({ s, t: types() }); } catch (e) { res = [false, 'Something went wrong checking this mission.']; }
+    feedback = res;
+    if (res[0] && !p.code) { p.code = true; save(); celebrateIfDone(); }
+    if (res[0] && m.quick) res = [true, res[1] + ' Now press Run and tap "Press force E" to count.'];
+    feedback = res;
+    setView('missions');
+    toast(res[0] ? 'Mission test passed!' : 'Not yet. Read the tip on the Missions screen.', res[0] ? 'ok' : '');
+    render();
+  }
+  // remember that a run was started from the Missions screen
+  document.addEventListener('click', (e) => { if (e.target.closest && e.target.closest('#mTest')) window.__mRun = true; if (e.target.closest && e.target.closest('#runBtn') && ($('#app').dataset.view === 'missions' || (sidePanel === 'missions' && !narrow()))) window.__mRun = true; }, true);
+  window.__missions = { MISSIONS, go, get prog() { return prog; } };
+})();
+
 </script>
 
 </body>
